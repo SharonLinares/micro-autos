@@ -24,27 +24,26 @@ public class AutoController {
 	@Autowired
 	private AutoService autoService;
 
-	@PostMapping
+	@PostMapping("/crear")
 	public ResponseEntity<AutoDto> crear(@RequestBody AutoDto autoDto) {
 		return ResponseEntity.status(HttpStatus.CREATED).body(autoService.crear(autoDto));
-
 	}
 
-	@PutMapping("/modificar/{id}")
-	public ResponseEntity<AutoDto> actualizar(@RequestBody AutoDto autoDto, @PathVariable Integer id) {
+	@PutMapping("/autualizar/{id}")
+	public ResponseEntity<AutoDto> actualizar(@RequestBody AutoDto autoDto,  @PathVariable Integer id) {
 		return ResponseEntity.status(HttpStatus.CREATED).body(autoService.actualizar(autoDto, id));
+
 	}
 
-	@GetMapping("/consultarAutos")
+	@GetMapping("/consultarautos")
 	public ResponseEntity<List<AutoDto>> consultarAuto() {
-		return ResponseEntity.ok(autoService.consultarAuto());
+		return ResponseEntity.ok(autoService.consultarAutos());
 	}
-
+	
 	@DeleteMapping("/eliminar/{id}")
 	public ResponseEntity<Void> eliminar(@PathVariable Integer id) {
 		autoService.eliminar(id);
 		return ResponseEntity.noContent().build();
-
 	}
 
 }

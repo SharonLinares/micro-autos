@@ -10,7 +10,7 @@ public interface AutoService {
 
 	public AutoDto actualizar(AutoDto autoDto, Integer id);
 
-	public List<AutoDto> consultarAuto();
+	public List<AutoDto> consultarAutos();
 
 	public void eliminar(Integer id);
 

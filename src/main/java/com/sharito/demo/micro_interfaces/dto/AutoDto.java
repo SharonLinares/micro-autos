@@ -2,29 +2,21 @@ package com.sharito.demo.micro_interfaces.dto;
 
 public class AutoDto {
 
-	public Integer id;
 	public String marca;
 	public String modelo;
-	public Integer anio;
+	public String anioDeMatriculacion;
+	public String matricula;
 
 	public AutoDto() {
 		super();
 	}
 
-	public AutoDto(Integer id, String marca, String modelo, Integer anio) {
+	public AutoDto(String marca, String modelo, String anioDeMatriculacion, String matricula) {
 		super();
-		this.id = id;
 		this.marca = marca;
 		this.modelo = modelo;
-		this.anio = anio;
-	}
-
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
+		this.anioDeMatriculacion = anioDeMatriculacion;
+		this.matricula = matricula;
 	}
 
 	public String getMarca() {
@@ -43,12 +35,20 @@ public class AutoDto {
 		this.modelo = modelo;
 	}
 
-	public Integer getAnio() {
-		return anio;
+	public String getAnioDeMatriculacion() {
+		return anioDeMatriculacion;
 	}
 
-	public void setAnio(Integer anio) {
-		this.anio = anio;
+	public void setAnioDeMatriculacion(String anioDeMatriculacion) {
+		this.anioDeMatriculacion = anioDeMatriculacion;
+	}
+
+	public String getMatricula() {
+		return matricula;
+	}
+
+	public void setMatricula(String matricula) {
+		this.matricula = matricula;
 	}
 
 }

@@ -15,7 +15,8 @@ public class AutoEntity {
 	public Integer id;
 	public String marca;
 	public String modelo;
-	public Integer anio;
+	public String anioDeMatriculacion;
+	public String matricula;
 
 	public Integer getId() {
 		return id;
@@ -41,12 +42,20 @@ public class AutoEntity {
 		this.modelo = modelo;
 	}
 
-	public Integer getAnio() {
-		return anio;
+	public String getAnioDeMatriculacion() {
+		return anioDeMatriculacion;
 	}
 
-	public void setAnio(Integer anio) {
-		this.anio = anio;
+	public void setAnioDeMatriculacion(String anioDeMatriculacion) {
+		this.anioDeMatriculacion = anioDeMatriculacion;
+	}
+
+	public String getMatricula() {
+		return matricula;
+	}
+
+	public void setMatricula(String matricula) {
+		this.matricula = matricula;
 	}
 
 }

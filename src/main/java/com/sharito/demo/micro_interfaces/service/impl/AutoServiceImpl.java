@@ -20,11 +20,11 @@ public class AutoServiceImpl implements AutoService {
 	@Override
 	public AutoDto crear(AutoDto autoDto) {
 		AutoEntity autoEntity = new AutoEntity();
+		autoEntity.setAnioDeMatriculacion(autoDto.getAnioDeMatriculacion());
 		autoEntity.setMarca(autoDto.getMarca());
 		autoEntity.setModelo(autoDto.getModelo());
-		autoEntity.setAnio(autoDto.getAnio());
+		autoEntity.setMatricula(autoDto.getMatricula());
 		autoRepository.save(autoEntity);
-		autoDto.setId(autoEntity.getId());
 		return autoDto;
 	}
 
@@ -32,30 +32,31 @@ public class AutoServiceImpl implements AutoService {
 	public AutoDto actualizar(AutoDto autoDto, Integer id) {
 		AutoEntity autoEntity = autoRepository.findById(id).orElse(null);
 		if (autoEntity != null) {
+			autoEntity.setAnioDeMatriculacion(autoDto.getAnioDeMatriculacion());
 			autoEntity.setMarca(autoDto.getMarca());
 			autoEntity.setModelo(autoDto.getModelo());
-			autoEntity.setAnio(autoDto.getAnio());
+			autoEntity.setMatricula(autoDto.getMatricula());
 			autoRepository.save(autoEntity);
-			autoDto.setId(autoEntity.getId());
+
 		}
 
 		return autoDto;
 	}
 
 	@Override
-	public List<AutoDto> consultarAuto() {
+	public List<AutoDto> consultarAutos() {
 		List<AutoEntity> autosEntity = autoRepository.findAll();
 		List<AutoDto> autosDto = new ArrayList<>();
 		for (AutoEntity autoEntity : autosEntity) {
 			AutoDto autoDto = new AutoDto();
-			autoDto.setAnio(autoEntity.getAnio());
+			autoDto.setAnioDeMatriculacion(autoEntity.getAnioDeMatriculacion());
 			autoDto.setMarca(autoEntity.getMarca());
+			autoDto.setMatricula(autoEntity.getMatricula());
 			autoDto.setModelo(autoEntity.getModelo());
-			autoDto.setId(autoEntity.getId());
-			autosDto.add(autoDto);
+
 		}
 
-		return autosDto;
+		return null;
 	}
 
 	@Override
@@ -63,7 +64,6 @@ public class AutoServiceImpl implements AutoService {
 		if (autoRepository.existsById(id)) {
 			autoRepository.deleteById(id);
 		}
-
 	}
 
 }
