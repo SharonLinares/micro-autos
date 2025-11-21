@@ -8,7 +8,7 @@ public interface AutoService {
 
 	public AutoDto crear(AutoDto autoDto);
 
-	public AutoDto actualizar(AutoDto autoDto, Integer id);
+	public AutoDto actualizar(AutoDto autoDto, String matricula);
 
 	public List<AutoDto> consultarAutos();
 

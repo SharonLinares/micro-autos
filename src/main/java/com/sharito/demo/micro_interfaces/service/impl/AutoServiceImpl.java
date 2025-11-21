@@ -24,24 +24,44 @@ public class AutoServiceImpl implements AutoService {
 		autoEntity.setMarca(autoDto.getMarca());
 		autoEntity.setModelo(autoDto.getModelo());
 		autoEntity.setMatricula(autoDto.getMatricula());
-		autoRepository.save(autoEntity);
+
+		if (!this.autoRepository.existsByMatricula(autoDto.getMatricula())) {
+			autoRepository.save(autoEntity);
+
+		} else {
+			throw new IllegalArgumentException("ya existe esta matricula");
+		}
+
 		return autoDto;
 	}
 
 	@Override
-	public AutoDto actualizar(AutoDto autoDto, Integer id) {
-		AutoEntity autoEntity = autoRepository.findById(id).orElse(null);
-		if (autoEntity != null) {
+	public AutoDto actualizar(AutoDto autoDto, String matricula) {
+		if (autoRepository.existsByMatricula(matricula)) {
+			if (autoRepository.existsByMatricula(autoDto.getMatricula())) {
+				throw new IllegalArgumentException("ya existe esta matricula");
+			}
+			AutoEntity autoEntity = autoRepository.findByMatricula(matricula);
+			
 			autoEntity.setAnioDeMatriculacion(autoDto.getAnioDeMatriculacion());
 			autoEntity.setMarca(autoDto.getMarca());
 			autoEntity.setModelo(autoDto.getModelo());
 			autoEntity.setMatricula(autoDto.getMatricula());
 			autoRepository.save(autoEntity);
-
+		} else {
+			throw new IllegalArgumentException("NO existe esta matricula");
 		}
 
 		return autoDto;
 	}
+
+//AutoEntity autoEntity = autoRepository.existsByMatricula(matricula);
+//if (autoEntity != null) {
+//	autoEntity.setAnioDeMatriculacion(autoDto.getAnioDeMatriculacion());
+//	autoEntity.setMarca(autoDto.getMarca());
+//	autoEntity.setModelo(autoDto.getModelo());
+//	autoEntity.setMatricula(autoDto.getMatricula());
+//	autoRepository.save(autoEntity);
 
 	@Override
 	public List<AutoDto> consultarAutos() {
@@ -53,10 +73,11 @@ public class AutoServiceImpl implements AutoService {
 			autoDto.setMarca(autoEntity.getMarca());
 			autoDto.setMatricula(autoEntity.getMatricula());
 			autoDto.setModelo(autoEntity.getModelo());
+			autosDto.add(autoDto);
 
 		}
 
-		return null;
+		return autosDto;
 	}
 
 	@Override

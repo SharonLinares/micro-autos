@@ -1,5 +1,6 @@
 package com.sharito.demo.micro_interfaces.entity;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -16,6 +17,9 @@ public class AutoEntity {
 	public String marca;
 	public String modelo;
 	public String anioDeMatriculacion;
+
+	
+	@Column(nullable = false, unique = true)
 	public String matricula;
 
 	public Integer getId() {

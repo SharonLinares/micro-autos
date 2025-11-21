@@ -29,9 +29,9 @@ public class AutoController {
 		return ResponseEntity.status(HttpStatus.CREATED).body(autoService.crear(autoDto));
 	}
 
-	@PutMapping("/autualizar/{id}")
-	public ResponseEntity<AutoDto> actualizar(@RequestBody AutoDto autoDto,  @PathVariable Integer id) {
-		return ResponseEntity.status(HttpStatus.CREATED).body(autoService.actualizar(autoDto, id));
+	@PutMapping("/autualizar/{matricula}")
+	public ResponseEntity<AutoDto> actualizar(@RequestBody AutoDto autoDto,  @PathVariable String matricula) {
+		return ResponseEntity.status(HttpStatus.CREATED).body(autoService.actualizar(autoDto, matricula));
 
 	}
 
