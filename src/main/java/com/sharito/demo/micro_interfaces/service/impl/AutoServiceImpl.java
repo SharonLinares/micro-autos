@@ -38,21 +38,24 @@ public class AutoServiceImpl implements AutoService {
 	@Override
 	public AutoDto actualizar(AutoDto autoDto, String matricula) {
 		if (autoRepository.existsByMatricula(matricula)) {
-			if (autoRepository.existsByMatricula(autoDto.getMatricula())) {
+			if (!autoDto.getMatricula().equals(matricula) && autoRepository.existsByMatricula(autoDto.getMatricula())) {
 				throw new IllegalArgumentException("ya existe esta matricula");
 			}
+
 			AutoEntity autoEntity = autoRepository.findByMatricula(matricula);
-			
+
 			autoEntity.setAnioDeMatriculacion(autoDto.getAnioDeMatriculacion());
 			autoEntity.setMarca(autoDto.getMarca());
-			autoEntity.setModelo(autoDto.getModelo());
 			autoEntity.setMatricula(autoDto.getMatricula());
+			autoEntity.setModelo(autoDto.getModelo());
 			autoRepository.save(autoEntity);
+
 		} else {
 			throw new IllegalArgumentException("NO existe esta matricula");
 		}
 
 		return autoDto;
+
 	}
 
 //AutoEntity autoEntity = autoRepository.existsByMatricula(matricula);
